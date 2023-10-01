@@ -6,10 +6,10 @@ using System;
 
 public class Ball : MonoBehaviour
 {
-    public TMP_Text enemyScore2;
-    public TMP_Text playerScore2;
-    int Playerscore = 0;
-    int Enemyscore = 0;
+    public TMP_Text enemyScoreText;
+    public TMP_Text playerScoreText;
+    int scorePlayer = 0;
+    int scoreEnemy = 0;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -22,15 +22,15 @@ public class Ball : MonoBehaviour
 
         if (other.gameObject.name.Contains("Player Gates"))
         {
-            Enemyscore += 1;
-            enemyScore2.text = Enemyscore.ToString();
+            scoreEnemy += 1;
+            enemyScoreText.text = scoreEnemy.ToString();
             
 
         }
         if (other.gameObject.name.Contains("Enemy Gates"))
         {
-            Playerscore += 1;
-            playerScore2.text = Playerscore.ToString();
+            scorePlayer += 1;
+            playerScoreText.text = scorePlayer.ToString();
 
         }
     }
