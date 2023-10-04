@@ -13,6 +13,11 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        GetComponent<AudioSource>();
+        source.pitch = Random.Range(0.8f, 1.2f);
+        source.volume = other.RelativeVelocity.magnitude/10f;
+        source.Play();
+
         if (other.gameObject.name.Contains("Gates"))
         {
             print("Goal");
@@ -24,13 +29,19 @@ public class Ball : MonoBehaviour
         {
             scoreEnemy += 1;
             enemyScoreText.text = scoreEnemy.ToString();
-            
+
+            transform.position = Vector3.left;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
 
         }
         if (other.gameObject.name.Contains("Enemy Gates"))
         {
             scorePlayer += 1;
             playerScoreText.text = scorePlayer.ToString();
+
+            transform.position = Vector3.right;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         }
     }
